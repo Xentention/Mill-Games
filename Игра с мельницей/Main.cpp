@@ -2,28 +2,28 @@
 *                                ЛР3 ООП                                  *
 *-------------------------------------------------------------------------*
 *                                                                         *
-* Project Name  : ЛР3. ООП. Мельница. 									                  *
+* Project Name  : ЛР3. ООП. Мельница. 									  *
 * Project Type  : Win32 Console application                               *
 * File Name     : Main.cpp	                                              *
 * Language      : Visual C++           MS VS 2022                         *
-* Programmer(s) : К.В.Тимошенко, М3О-211Б-20							                *
-* Comment(s)    : Основная программа							                        *
-*																		                                      *
+* Programmer(s) : К.В.Тимошенко, М3О-211Б-20							  *
+* Comment(s)    : Основная программа							          *
+*																		  *
 **************************************************************************/
 
 #include <iostream>
 #include <Windows.h>
-#include "Utilities.h"	  	//Заголовочный файл с вспомогательными объявлениями
-#include "Mills.h"			    //Заголочный файл с иерархией мельниц
-#include "Obstacles.h"	  	//Заголовочный файл с иерархией препятствий
+#include "Utilities.h"		//Заголовочный файл с вспомогательными объявлениями
+#include "Mills.h"			//Заголочный файл с иерархией мельниц
+#include "Obstacles.h"		//Заголовочный файл с иерархией препятствий
 
 using namespace std;
 
-void Information();	    		//информация о работе с прогаммой
-void EmptyField();	    		//Нарисовать чистый пейзаж
-void ClearAllSky();		    	//Чистое небо
-void AllLighttoDarkSky(); 	//Переход темного неба в светлое
-void ClearAllCrops();		    //Чистое поле
+void Information();			//информация о работе с прогаммой
+void EmptyField();			//Нарисовать чистый пейзаж
+void ClearAllSky();			//Чистое небо
+void AllLighttoDarkSky();	//Переход темного неба в светлое
+void ClearAllCrops();		//Чистое поле
 
 //Управление мельницей
 void UIFigure(Mill** Mills, Obstacle** Obstacles);
@@ -31,7 +31,7 @@ void UIFigure(Mill** Mills, Obstacle** Obstacles);
 HDC hdc;     //Объявим  контекст устройства
 
 /*-----------------------------------------------------------------*/
-/*             О С Н О В Н А Я		П Р О Г Р А М М А                */
+/*             О С Н О В Н А Я		П Р О Г Р А М М А              */
 /*-----------------------------------------------------------------*/
 int main() {
 	HWND hwnd = GetConsoleWindow();
@@ -43,19 +43,19 @@ int main() {
 		//если контекст существует - можем работать
 		if (hdc != 0)
 		{
-			system("color F0");			  //белый фон, черный текст
+			system("color F0");			//белый фон, черный текст
 			setlocale(LC_ALL, "rus");	//русский язык вывода
 
 			Information();				//вывод информации
 			system("cls");				//очистка экрана консоли
-			EmptyField();			  	//рисуем поле
+			EmptyField();				//рисуем поле
 
-			int x0 = 400, y0 = 350;					      	 //Стартовые координаты мельниц
+			int x0 = 400, y0 = 350;						 //Стартовые координаты мельниц
 
 			//Объявление объектов мельниц
-			Mill MainMill(x0, y0);						       //Мельница 
-			RoofedMill MainRMill(x0, y0);				     //Мельница с крышей
-			WaterMill MainWMill(x0, y0);				     //Водяная мельница 
+			Mill MainMill(x0, y0);						 //Мельница 
+			RoofedMill MainRMill(x0, y0);				 //Мельница с крышей
+			WaterMill MainWMill(x0, y0);				 //Водяная мельница 
 			WaterRoofedMill MainWRMill(x0, y0);			 //Водяная мельница с крышей
 
 			Mill* Mills[4];
@@ -97,13 +97,13 @@ void ClearAllSky() {
 	//кисть и перо цвета неба
 	HBRUSH brush = CreateSolidBrush(SkyColor);
 	HPEN pen = CreatePen(PS_SOLID, 1, SkyColor);
-	SelectObject(hdc, brush);	    //выбираем заданную кисть
-	SelectObject(hdc, pen);		    //выбираем заданную ручку
+	SelectObject(hdc, brush);	//выбираем заданную кисть
+	SelectObject(hdc, pen);		//выбираем заданную ручку
 	//закрашиваем небо
 	Rectangle(hdc, 0, 0, FieldRight, FieldBottom);
-	DeleteObject(brush);      	//Удаляем больше ненужную кисть
-	DeleteObject(pen);	      	//и ручку
-	AllLighttoDarkSky();	      //Рисуем светлое небо
+	DeleteObject(brush);	//Удаляем больше ненужную кисть
+	DeleteObject(pen);		//и ручку
+	AllLighttoDarkSky();	//Рисуем светлое небо
 
 }	
 
@@ -112,8 +112,8 @@ void AllLighttoDarkSky() {
 	//кисть и перо цвета светлого неба
 	HBRUSH brush = CreateSolidBrush(LightSkyColor);
 	HPEN pen = CreatePen(PS_SOLID, 1, LightSkyColor);
-	SelectObject(hdc, brush);   	//выбираем заданную кисть
-	SelectObject(hdc, pen);	    	//выбираем заданную ручку
+	SelectObject(hdc, brush);	//выбираем заданную кисть
+	SelectObject(hdc, pen);		//выбираем заданную ручку
 
 	//Рисуем светлую часть неба
 	Rectangle(hdc, 0, LightSkyLevel, FieldRight, FieldBottom);
@@ -125,15 +125,15 @@ void AllLighttoDarkSky() {
 	Rectangle(hdc, 0, LightSkyLevel - 60, FieldRight, LightSkyLevel - 64);
 	Rectangle(hdc, 0, LightSkyLevel - 77, FieldRight, LightSkyLevel - 80);
 
-	DeleteObject(brush);	  //Удаляем больше ненужную кисть
-	DeleteObject(pen);		  //и ручку
+	DeleteObject(brush);	//Удаляем больше ненужную кисть
+	DeleteObject(pen);		//и ручку
 
 }
 
 //Рисуем поле
 void ClearAllCrops() {
-	SetBkMode(hdc, OPAQUE);		    	//фон кисти не прозрачный
-	SetBkColor(hdc, WheatColor);  	//фон кисти цвета пшеницы
+	SetBkMode(hdc, OPAQUE);			//фон кисти не прозрачный
+	SetBkColor(hdc, WheatColor);	//фон кисти цвета пшеницы
 
 	//Кисть в полоску цвета темной пшеницы
 	HBRUSH brush = CreateHatchBrush(HS_BDIAGONAL, DarkWheatColor);
@@ -154,9 +154,9 @@ void ClearAllCrops() {
 //Вывод информации о  работе с программой
 void Information() {
 	cout << "В программе присутствуют 3 объекта:\n"
-		   << "Мельница, станция ремонта и озеро.\n"
-		   << "Станция добавляет или удаляет крышу у мельницы,\n"
-	 	   << "а в зоне озера мельница становится водяной.\n";
+		 << "Мельница, станция ремонта и озеро.\n"
+		 << "Станция добавляет или удаляет крышу у мельницы,\n"
+	 	 << "а в зоне озера мельница становится водяной.\n";
 	cout << "\nМельница перетаскивается при помощи стрелок, Esc - выход из программы.\n";
 	cout << "\nНажмите Enter, чтобы продолжить:";
 
