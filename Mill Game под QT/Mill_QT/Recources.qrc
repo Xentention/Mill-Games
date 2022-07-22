@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>recources/images/wheat.png</file>
+        <file>recources/images/millbuilding.png</file>
+        <file>recources/images/millroof.png</file>
+        <file>recources/images/millrotor.png</file>
+        <file>recources/images/pond.png</file>
+        <file>recources/images/servicestation.png</file>
+        <file>recources/images/watermillbuilding.png</file>
+        <file>recources/images/watermillroof.png</file>
+        <file>recources/images/watermillrotor.png</file>
+        <file>recources/images/backgroundimg.png</file>
+    </qresource>
+</RCC>
