@@ -6,6 +6,6 @@
 
 ![mill game screenshot](https://user-images.githubusercontent.com/96055384/180968619-11f2dc46-2bb6-4b6e-a74b-4b08569c2ec8.png)
 
-Упрощенная иерархия классов:
+Упрощенная схема иерархии классов:
 
 ![uml class simple](https://user-images.githubusercontent.com/96055384/180968361-5b999159-a38f-4363-a32c-820d9f433a2b.png)
