@@ -11,7 +11,7 @@ Figure::Figure(QGraphicsObject *parent, int startX, int startY) : QGraphicsObjec
 //--------------------------------------------------------------
 //прямоугольник, в кот-й заключена фигура
 QRectF Figure::boundingRect() const  {
-    return QRectF(0, 0, Width, Height);   /// Ограничиваем область, в которой лежит треугольник
+    return QRectF(0, 0, Width, Height); 
 
 }   //end Figure::boundingRect()
 
