@@ -6,6 +6,10 @@
 
 ![mill game screenshot](https://user-images.githubusercontent.com/96055384/180968619-11f2dc46-2bb6-4b6e-a74b-4b08569c2ec8.png)
 
+Таблица переходов типа игрового объекта при взаимодействии:
+
+![transition matrix](https://user-images.githubusercontent.com/96055384/181002758-0549f1a9-9b60-4973-a6fa-432600f8d88b.png)
+
 Упрощенная схема иерархии классов:
 
-![uml class simple](https://user-images.githubusercontent.com/96055384/180968361-5b999159-a38f-4363-a32c-820d9f433a2b.png)
+![uml class simple](https://user-images.githubusercontent.com/96055384/181002541-a4e1feda-4f1a-44ef-9fa3-c6bc884eb9b3.png)
