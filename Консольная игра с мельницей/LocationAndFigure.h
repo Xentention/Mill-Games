@@ -1,46 +1,46 @@
 /**************************************************************************
-*                                ЛР4 ООП                                  *
+*                                Р›Р 4 РћРћРџ                                  *
 *-------------------------------------------------------------------------*
 *                                                                         *
-* Project Name  : ЛР4. ООП. Мельница. 									  *
+* Project Name  : Р›Р 4. РћРћРџ. РњРµР»СЊРЅРёС†Р°. 					  *
 * Project Type  : Win32 Console application                               *
 * File Name     : LocationAndFigure.h	                                  *
 * Language      : Visual C++           MS VS 2022                         *
-* Programmer(s) : К.В.Тимошенко, М3О-211Б-20		                      *
-* Modified By   :														  *
+* Programmer(s) : Рљ.Р’.РўРёРјРѕС€РµРЅРєРѕ, Рњ3Рћ-211Р‘-20		                  *
+* Modified By   :							  *
 * Created       : 28 / 03 / 2022                                          *
 * Last Revision : 01 / 05 / 2022                                          *
-* Comment(s)    : Классы Location и Point							      *
-*																		  *
+* Comment(s)    : РљР»Р°СЃСЃС‹ Location Рё Point				   *
+*									  *
 **************************************************************************/
 #pragma once
 
-/*-----------------------  Класс МЕСТОПОЛОЖЕНИЕ -------------------------*/
+/*-----------------------  РљР»Р°СЃСЃ РњР•РЎРўРћРџРћР›РћР–Р•РќРР• -------------------------*/
 class Location {
 private:
-	int X;		//координата X
-	int Y;		//координата Y
+	int X;		//РєРѕРѕСЂРґРёРЅР°С‚Р° X
+	int Y;		//РєРѕРѕСЂРґРёРЅР°С‚Р° Y
 
 public:
 	Location(int InitX, int InitY); 
-	int GetX();						//получить X координату точки
-	int GetY();						//получить Y координату точки
-	void SetX(int NewX);			//Установить Х координату точки
-	void SetY(int NewY);			//Установить Y координату точки
+	int GetX();				//РїРѕР»СѓС‡РёС‚СЊ X РєРѕРѕСЂРґРёРЅР°С‚Сѓ С‚РѕС‡РєРё
+	int GetY();				//РїРѕР»СѓС‡РёС‚СЊ Y РєРѕРѕСЂРґРёРЅР°С‚Сѓ С‚РѕС‡РєРё
+	void SetX(int NewX);			//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РҐ РєРѕРѕСЂРґРёРЅР°С‚Сѓ С‚РѕС‡РєРё
+	void SetY(int NewY);			//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Y РєРѕРѕСЂРґРёРЅР°С‚Сѓ С‚РѕС‡РєРё
 
 };	//end class Location
 
-/*-----------------------  Абстрактный класс ФИГУРА ------------------------*/
+/*-----------------------  РђР±СЃС‚СЂР°РєС‚РЅС‹Р№ РєР»Р°СЃСЃ Р¤РР“РЈР Рђ ------------------------*/
 class Figure : public Location {
 protected:
-	bool Visible;						//видна фигура или нет
+	bool Visible;				//РІРёРґРЅР° С„РёРіСѓСЂР° РёР»Рё РЅРµС‚
 
 public:
 	Figure(int InitX, int InitY);		
-	virtual int ReturnMaxHeight() = 0;	//узнать ширину
-	virtual int ReturnMaxWidth() = 0;	//узнать высоту
-	virtual void Show() = 0;			//показать фигуру
-	virtual void Hide();				//скрыть фигуру
-	void MoveTo(int NewX, int NewY);	//переместить фигуру
+	virtual int ReturnMaxHeight() = 0;	//СѓР·РЅР°С‚СЊ С€РёСЂРёРЅСѓ
+	virtual int ReturnMaxWidth() = 0;	//СѓР·РЅР°С‚СЊ РІС‹СЃРѕС‚Сѓ
+	virtual void Show() = 0;		//РїРѕРєР°Р·Р°С‚СЊ С„РёРіСѓСЂСѓ
+	virtual void Hide();			//СЃРєСЂС‹С‚СЊ С„РёРіСѓСЂСѓ
+	void MoveTo(int NewX, int NewY);	//РїРµСЂРµРјРµСЃС‚РёС‚СЊ С„РёРіСѓСЂСѓ
 
 };	//end class Figure
