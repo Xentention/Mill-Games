@@ -1,59 +1,59 @@
 /**************************************************************************
-*                                ЛР4 ООП                                  *
+*                                Р›Р 4 РћРћРџ                                  *
 *-------------------------------------------------------------------------*
 *                                                                         *
-* Project Name  : ЛР4. ООП. Мельница. 									  *
+* Project Name  : Р›Р 4. РћРћРџ. РњРµР»СЊРЅРёС†Р°. 									  *
 * Project Type  : Win32 Console application                               *
 * File Name     : Obstacles.h                                             *
 * Language      : Visual C++           MS VS 2022                         *
-* Programmer(s) : К.В.Тимошенко, М3О-211Б-20		                      *
+* Programmer(s) : Рљ.Р’.РўРёРјРѕС€РµРЅРєРѕ, Рњ3Рћ-211Р‘-20		                      *
 * Modified By   :														  *
 * Created       : 28 / 03 / 2022                                          *
 * Last Revision : 01 / 05 / 2022                                          *
-* Comment(s)    : Абстрактный класс Obstacles и его потомки 		      *
+* Comment(s)    : РђР±СЃС‚СЂР°РєС‚РЅС‹Р№ РєР»Р°СЃСЃ Obstacles Рё РµРіРѕ РїРѕС‚РѕРјРєРё 		      *
 *																		  *
 **************************************************************************/
 #pragma once
 
 #include "LocationAndFigure.h"
 
-/*--------------------  Абстрактный класс ПРЕПЯТСТВИЯ ---------------------*/
+/*--------------------  РђР±СЃС‚СЂР°РєС‚РЅС‹Р№ РєР»Р°СЃСЃ РџР Р•РџРЇРўРЎРўР’РРЇ ---------------------*/
 class Obstacles : public Figure {
 public:
-	//конструктор
+	//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	Obstacles(int InitX, int InitY);
 
-	bool ObjectNearby(Figure& Object);	//есть ли фигура рядом
+	bool ObjectNearby(Figure& Object);	//РµСЃС‚СЊ Р»Рё С„РёРіСѓСЂР° СЂСЏРґРѕРј
 
 };	//end class Obstacles
 
-/*-----------------------  Класс ПРУД -------------------------*/
+/*-----------------------  РљР»Р°СЃСЃ РџР РЈР” -------------------------*/
 class Pond : public Obstacles {
 private:
-	unsigned int Height;		//высота пруда
-	unsigned int Width;			//ширина пруда
+	unsigned int Height;		//РІС‹СЃРѕС‚Р° РїСЂСѓРґР°
+	unsigned int Width;			//С€РёСЂРёРЅР° РїСЂСѓРґР°
 
 public:
-	//конструктор с параметрами по умолчанию
+	//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	Pond(int InitX, int InitY, int InitHeight = 300, int InitWidth = 600);
 
-	virtual void Show();						//Показать пруд (переопр.)
-	virtual int ReturnMaxHeight();				//Узнаем высоту пруда (переопр.)
-	virtual int ReturnMaxWidth();				//Узнаем ширину пруда (переопр.)
+	virtual void Show();						//РџРѕРєР°Р·Р°С‚СЊ РїСЂСѓРґ (РїРµСЂРµРѕРїСЂ.)
+	virtual int ReturnMaxHeight();				//РЈР·РЅР°РµРј РІС‹СЃРѕС‚Сѓ РїСЂСѓРґР° (РїРµСЂРµРѕРїСЂ.)
+	virtual int ReturnMaxWidth();				//РЈР·РЅР°РµРј С€РёСЂРёРЅСѓ РїСЂСѓРґР° (РїРµСЂРµРѕРїСЂ.)
 
 };	//end class Pond
 
-/*-----------------------  Класс РЕМОНТНАЯ СТАНЦИЯ -------------------------*/
+/*-----------------------  РљР»Р°СЃСЃ Р Р•РњРћРќРўРќРђРЇ РЎРўРђРќР¦РРЇ -------------------------*/
 class ServiceStation : public Obstacles {
 private:
 	unsigned int Size;
 
 public:
-	//конструктор с параметрами по умолчанию
+	//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	ServiceStation(int InitX, int InitY, int InitSize = 100);
 
-	virtual void Show();				//Показать рем. станцию (переопр.)
-	virtual int ReturnMaxHeight();		//Узнаем высоту станции (переопр.)
-	virtual int ReturnMaxWidth();		//Узнаем ширину станции (переопр.)
+	virtual void Show();				//РџРѕРєР°Р·Р°С‚СЊ СЂРµРј. СЃС‚Р°РЅС†РёСЋ (РїРµСЂРµРѕРїСЂ.)
+	virtual int ReturnMaxHeight();		//РЈР·РЅР°РµРј РІС‹СЃРѕС‚Сѓ СЃС‚Р°РЅС†РёРё (РїРµСЂРµРѕРїСЂ.)
+	virtual int ReturnMaxWidth();		//РЈР·РЅР°РµРј С€РёСЂРёРЅСѓ СЃС‚Р°РЅС†РёРё (РїРµСЂРµРѕРїСЂ.)
 
 };	//end class ServiceStation
