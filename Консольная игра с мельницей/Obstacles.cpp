@@ -1,16 +1,16 @@
 /**************************************************************************
-*                                ЛР4 ООП                                  *
+*                                Р›Р 4 РћРћРџ                                  *
 *-------------------------------------------------------------------------*
 *                                                                         *
-* Project Name  : ЛР4. ООП. Мельница. 									  *
+* Project Name  : Р›Р 4. РћРћРџ. РњРµР»СЊРЅРёС†Р°. 									  *
 * Project Type  : Win32 Console application                               *
 * File Name     : Obstacles.cpp                                           *
 * Language      : Visual C++           MS VS 2022                         *
-* Programmer(s) : К.В.Тимошенко, М3О-211Б-20		                      *
+* Programmer(s) : Рљ.Р’.РўРёРјРѕС€РµРЅРєРѕ, Рњ3Рћ-211Р‘-20		                      *
 * Modified By   :														  *
 * Created       : 28 / 03 / 2022                                          *
 * Last Revision : 01 / 05 / 2022                                          *
-* Comment(s)    : Методы абстр. класса Obstacle и его потомков	          *
+* Comment(s)    : РњРµС‚РѕРґС‹ Р°Р±СЃС‚СЂ. РєР»Р°СЃСЃР° Obstacle Рё РµРіРѕ РїРѕС‚РѕРјРєРѕРІ	          *
 *																		  *
 **************************************************************************/
 
@@ -18,51 +18,51 @@
 #include "Utilities.h"
 #include "Obstacles.h"
 
-extern HDC hdc;      // объявим  контекст устройства
+extern HDC hdc;      // РѕР±СЉСЏРІРёРј  РєРѕРЅС‚РµРєСЃС‚ СѓСЃС‚СЂРѕР№СЃС‚РІР°
 
 /*----------------------------------------*/
-/*        МЕТОДЫ КЛАССА Obstacles          */
+/*        РњР•РўРћР”Р« РљР›РђРЎРЎРђ Obstacles          */
 /*----------------------------------------*/
 
  //--------------------------------------------------------------
-//конструктор
+//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 Obstacles::Obstacles(int InitX, int InitY) :Figure(InitX, InitY) {
-	//формально пустое тело
+	//С„РѕСЂРјР°Р»СЊРЅРѕ РїСѓСЃС‚РѕРµ С‚РµР»Рѕ
 
 };	//end Obstacles::Obstacles()
 
 //--------------------------------------------------------------
-//Есть ли рядом другой объект
+//Р•СЃС‚СЊ Р»Рё СЂСЏРґРѕРј РґСЂСѓРіРѕР№ РѕР±СЉРµРєС‚
 bool Obstacles::ObjectNearby(Figure& Object) {
-	int ObstacleHeight = ReturnMaxHeight();			//Высота препятствия
-	int ObstacleWidth = ReturnMaxWidth();			//Ширина препятствия
-	int ObjectHeight = Object.ReturnMaxHeight();	//Высота фигуры
-	int ObjectWidth = Object.ReturnMaxWidth();		//Ширина фигуры
+	int ObstacleHeight = ReturnMaxHeight();			//Р’С‹СЃРѕС‚Р° РїСЂРµРїСЏС‚СЃС‚РІРёСЏ
+	int ObstacleWidth = ReturnMaxWidth();			//РЁРёСЂРёРЅР° РїСЂРµРїСЏС‚СЃС‚РІРёСЏ
+	int ObjectHeight = Object.ReturnMaxHeight();	//Р’С‹СЃРѕС‚Р° С„РёРіСѓСЂС‹
+	int ObjectWidth = Object.ReturnMaxWidth();		//РЁРёСЂРёРЅР° С„РёРіСѓСЂС‹
 
-	//Пересекается ли по высоте
+	//РџРµСЂРµСЃРµРєР°РµС‚СЃСЏ Р»Рё РїРѕ РІС‹СЃРѕС‚Рµ
 	int DeltaHeight;
 	GetY() >= Object.GetY() ?
 		DeltaHeight = (GetY() - ObstacleHeight) - (Object.GetY() + ObjectHeight) :
 		DeltaHeight = (Object.GetY() - ObjectHeight) - (GetY() + ObstacleHeight);
-	//Пересекается ли по ширине
+	//РџРµСЂРµСЃРµРєР°РµС‚СЃСЏ Р»Рё РїРѕ С€РёСЂРёРЅРµ
 	int DeltaWidth;
 	GetX() >= Object.GetX() ?
 		DeltaWidth = (GetX() - ObstacleWidth) - (Object.GetX() + ObjectWidth) :
 		DeltaWidth = (Object.GetX() - ObjectWidth) - (GetX() + ObstacleWidth);
 
-	//Воздвращаем true если объекты пересекаются
+	//Р’РѕР·РґРІСЂР°С‰Р°РµРј true РµСЃР»Рё РѕР±СЉРµРєС‚С‹ РїРµСЂРµСЃРµРєР°СЋС‚СЃСЏ
 	if (DeltaHeight < 0 && DeltaWidth < 0)	return true;
-	return false;		//иначе фигуры рядом нет
+	return false;		//РёРЅР°С‡Рµ С„РёРіСѓСЂС‹ СЂСЏРґРѕРј РЅРµС‚
 
 }	//end Obstacles::ObjectNearby()
 
 
 /*----------------------------------------*/
-/*         МЕТОДЫ КЛАССА Pond             */
+/*         РњР•РўРћР”Р« РљР›РђРЎРЎРђ Pond             */
 /*----------------------------------------*/
 
  //--------------------------------------------------------------
-//конструктор
+//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 Pond::Pond(int InitX, int InitY, int InitHeight, int InitWidth) : Obstacles(InitX, InitY) {
 	Height = InitHeight;
 	Width = InitWidth;
@@ -70,77 +70,78 @@ Pond::Pond(int InitX, int InitY, int InitHeight, int InitWidth) : Obstacles(Init
 }	//end Pond::Pond()
 
  //--------------------------------------------------------------
-//показать пруд
+//РїРѕРєР°Р·Р°С‚СЊ РїСЂСѓРґ
 void Pond::Show() {
 	Visible = true;
 	int X = GetX(), Y = GetY();
 
-	//Зададим ручку и кисть цвета пруда
+	//Р—Р°РґР°РґРёРј СЂСѓС‡РєСѓ Рё РєРёСЃС‚СЊ С†РІРµС‚Р° РїСЂСѓРґР°
 	HBRUSH brush = CreateSolidBrush(PondColor);
 	HPEN pen = CreatePen(PS_SOLID, 1, PondColor);
-	SelectObject(hdc, brush);	//выбираем заданную кисть
-	SelectObject(hdc, pen);		//выбираем заданную ручку
+	SelectObject(hdc, brush);	//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
+	SelectObject(hdc, pen);		//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
 
-	//рисуем овал пруда
+	//СЂРёСЃСѓРµРј РѕРІР°Р» РїСЂСѓРґР°
 	Ellipse(hdc, X - Width / 2, Y - Height / 2, X + Width / 2, Y + Height / 2);
 
-	DeleteObject(brush);	//Удаляем больше ненужную кисть
-	DeleteObject(pen);		//и ручку
+	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
+	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
 
 }	//end Pond::Show()
 
 //--------------------------------------------------------------
-//Вернуть высоту фигуры
+//Р’РµСЂРЅСѓС‚СЊ РІС‹СЃРѕС‚Сѓ С„РёРіСѓСЂС‹
 int Pond::ReturnMaxHeight() {	return Height / 2;	}	
 
 //--------------------------------------------------------------
-//Вернуть ширину фигуры
+//Р’РµСЂРЅСѓС‚СЊ С€РёСЂРёРЅСѓ С„РёРіСѓСЂС‹
 int Pond::ReturnMaxWidth() {	return Width / 2;	}	
 
 
 /*-------------------------------------------------*/
-/*        МЕТОДЫ КЛАССА ServiceStation             */
+/*        РњР•РўРћР”Р« РљР›РђРЎРЎРђ ServiceStation             */
 /*-------------------------------------------------*/
 
  //--------------------------------------------------------------
-//конструктор
+//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 ServiceStation::ServiceStation(int InitX, int InitY, int InitSize) : Obstacles(InitX, InitY) {
 	Size = InitSize;
 
 }	//end ServiceStation::ServiceStation()
 
  //--------------------------------------------------------------
-//показать рем. станцию
+//РїРѕРєР°Р·Р°С‚СЊ СЂРµРј. СЃС‚Р°РЅС†РёСЋ
 void ServiceStation::Show() {
 	Visible = true;
 	int X = GetX(), Y = GetY();
 
-	//Зададим ручку и кисть цвета Здания
+	//Р—Р°РґР°РґРёРј СЂСѓС‡РєСѓ Рё РєРёСЃС‚СЊ С†РІРµС‚Р° Р—РґР°РЅРёСЏ
 	HBRUSH brush = CreateSolidBrush(MillColor);
 	HPEN pen = CreatePen(PS_SOLID, 1, MillColor);
-	SelectObject(hdc, brush);	//выбираем заданную кисть
-	SelectObject(hdc, pen);		//выбираем заданную ручку
+	SelectObject(hdc, brush);	//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
+	SelectObject(hdc, pen);		//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
 	
-	//Рисуем здание
+	//Р РёСЃСѓРµРј Р·РґР°РЅРёРµ
 	Rectangle(hdc, X - Size / 2, Y - Size, X + Size / 2, Y + Size);
-	DeleteObject(brush);	//Удаляем больше ненужную кисть
+	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
 
-	//Задаем синюю кисть
+	//Р—Р°РґР°РµРј СЃРёРЅСЋСЋ РєРёСЃС‚СЊ
 	brush = CreateSolidBrush(RGB(0, 0, 255));
-	SelectObject(hdc, brush);	//выбираем заданную кисть
+	SelectObject(hdc, brush);	//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
 
-	//Рисуем окно
+	//Р РёСЃСѓРµРј РѕРєРЅРѕ
 	Rectangle(hdc, X - Size / 4, Y - Size / 2 , X + Size / 4, Y);
 
-	DeleteObject(brush);	//Удаляем больше ненужную кисть
-	DeleteObject(pen);		//и ручку
+	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
+	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
 
 }	//end ServiceStation::Show()
 
 //--------------------------------------------------------------
-//Вернуть высоту фигуры
+//Р’РµСЂРЅСѓС‚СЊ РІС‹СЃРѕС‚Сѓ С„РёРіСѓСЂС‹
 int ServiceStation::ReturnMaxHeight() {		return Size;	}	
 
 //--------------------------------------------------------------
-//Вернуть ширину фигуры
+//Р’РµСЂРЅСѓС‚СЊ С€РёСЂРёРЅСѓ С„РёРіСѓСЂС‹
+int ServiceStation::ReturnMaxWidth() {	return Size / 2;	}	
 int ServiceStation::ReturnMaxWidth() {	return Size / 2;	}	
