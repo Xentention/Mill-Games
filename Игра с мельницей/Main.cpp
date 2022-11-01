@@ -1,123 +1,125 @@
 /**************************************************************************
-*                                Р›Р 3 РћРћРџ                                  *
+*                                ЛР4 ООП                                  *
 *-------------------------------------------------------------------------*
 *                                                                         *
-* Project Name  : Р›Р 3. РћРћРџ. РњРµР»СЊРЅРёС†Р°. 									  *
+* Project Name  : ЛР4. ООП. Мельница. 									  *
 * Project Type  : Win32 Console application                               *
 * File Name     : Main.cpp	                                              *
 * Language      : Visual C++           MS VS 2022                         *
-* Programmer(s) : Рљ.Р’.РўРёРјРѕС€РµРЅРєРѕ, Рњ3Рћ-211Р‘-20							  *
-* Comment(s)    : РћСЃРЅРѕРІРЅР°СЏ РїСЂРѕРіСЂР°РјРјР°							          *
+* Programmer(s) : К.В.Тимошенко, М3О-211Б-20							  *
+* Comment(s)    : Основная программа							          *
 *																		  *
 **************************************************************************/
 
 #include <iostream>
 #include <Windows.h>
-#include "Utilities.h"		//Р—Р°РіРѕР»РѕРІРѕС‡РЅС‹Р№ С„Р°Р№Р» СЃ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹РјРё РѕР±СЉСЏРІР»РµРЅРёСЏРјРё
-#include "Mills.h"			//Р—Р°РіРѕР»РѕС‡РЅС‹Р№ С„Р°Р№Р» СЃ РёРµСЂР°СЂС…РёРµР№ РјРµР»СЊРЅРёС†
-#include "Obstacles.h"		//Р—Р°РіРѕР»РѕРІРѕС‡РЅС‹Р№ С„Р°Р№Р» СЃ РёРµСЂР°СЂС…РёРµР№ РїСЂРµРїСЏС‚СЃС‚РІРёР№
+#include "Utilities.h"		//Заголовочный файл с вспомогательными объявлениями
+#include "Mills.h"			//Заголочный файл с иерархией мельниц
+#include "Obstacles.h"		//Заголовочный файл с иерархией препятствий
 
 using namespace std;
 
-void Information();			//РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ СЂР°Р±РѕС‚Рµ СЃ РїСЂРѕРіР°РјРјРѕР№
-void EmptyField();			//РќР°СЂРёСЃРѕРІР°С‚СЊ С‡РёСЃС‚С‹Р№ РїРµР№Р·Р°Р¶
-void ClearAllSky();			//Р§РёСЃС‚РѕРµ РЅРµР±Рѕ
-void AllLighttoDarkSky();	//РџРµСЂРµС…РѕРґ С‚РµРјРЅРѕРіРѕ РЅРµР±Р° РІ СЃРІРµС‚Р»РѕРµ
-void ClearAllCrops();		//Р§РёСЃС‚РѕРµ РїРѕР»Рµ
+void Information();			//информация о работе с прогаммой
+void EmptyField();			//Нарисовать чистый пейзаж
+void ClearAllSky();			//Чистое небо
+void AllLighttoDarkSky();	//Переход темного неба в светлое
+void ClearAllCrops();		//Чистое поле
 
-//РЈРїСЂР°РІР»РµРЅРёРµ РјРµР»СЊРЅРёС†РµР№
-void UIFigure(Mill** Mills, Obstacle** Obstacles);
+//Управление мельницей
+void UIFigure(Mill** Mills, Obstacles** Obstacles);
 
-HDC hdc;     //РћР±СЉСЏРІРёРј  РєРѕРЅС‚РµРєСЃС‚ СѓСЃС‚СЂРѕР№СЃС‚РІР°
+HDC hdc;     //Объявим  контекст устройства
 
 /*-----------------------------------------------------------------*/
-/*             Рћ РЎ Рќ Рћ Р’ Рќ Рђ РЇ		Рџ Р  Рћ Р“ Р  Рђ Рњ Рњ Рђ              */
+/*             О С Н О В Н А Я		П Р О Г Р А М М А              */
 /*-----------------------------------------------------------------*/
 int main() {
 	HWND hwnd = GetConsoleWindow();
 
-	//РµСЃР»Рё РґРµСЃРєСЂРёРїС‚РѕСЂ СЃСѓС‰РµСЃС‚РІСѓРµС‚
+	//если дескриптор существует
 	if (hwnd != NULL) {
 
 		hdc = GetWindowDC(hwnd);
-		//РµСЃР»Рё РєРѕРЅС‚РµРєСЃС‚ СЃСѓС‰РµСЃС‚РІСѓРµС‚ - РјРѕР¶РµРј СЂР°Р±РѕС‚Р°С‚СЊ
+		//если контекст существует - можем работать
 		if (hdc != 0)
 		{
-			system("color F0");			//Р±РµР»С‹Р№ С„РѕРЅ, С‡РµСЂРЅС‹Р№ С‚РµРєСЃС‚
-			setlocale(LC_ALL, "rus");	//СЂСѓСЃСЃРєРёР№ СЏР·С‹Рє РІС‹РІРѕРґР°
+			system("color F0");			//белый фон, черный текст
+			setlocale(LC_ALL, "rus");	//русский язык вывода
 
-			Information();				//РІС‹РІРѕРґ РёРЅС„РѕСЂРјР°С†РёРё
-			system("cls");				//РѕС‡РёСЃС‚РєР° СЌРєСЂР°РЅР° РєРѕРЅСЃРѕР»Рё
-			EmptyField();				//СЂРёСЃСѓРµРј РїРѕР»Рµ
+			Information();				//вывод информации
+			system("cls");				//очистка экрана консоли
+			EmptyField();				//рисуем поле
 
-			int x0 = 400, y0 = 350;						 //РЎС‚Р°СЂС‚РѕРІС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РјРµР»СЊРЅРёС†
+			int x0 = 400, y0 = 350;						 //Стартовые координаты мельниц
 
-			//РћР±СЉСЏРІР»РµРЅРёРµ РѕР±СЉРµРєС‚РѕРІ РјРµР»СЊРЅРёС†
-			Mill MainMill(x0, y0);						 //РњРµР»СЊРЅРёС†Р° 
-			RoofedMill MainRMill(x0, y0);				 //РњРµР»СЊРЅРёС†Р° СЃ РєСЂС‹С€РµР№
-			WaterMill MainWMill(x0, y0);				 //Р’РѕРґСЏРЅР°СЏ РјРµР»СЊРЅРёС†Р° 
-			WaterRoofedMill MainWRMill(x0, y0);			 //Р’РѕРґСЏРЅР°СЏ РјРµР»СЊРЅРёС†Р° СЃ РєСЂС‹С€РµР№
+			//Объявление объектов мельниц
+			Mill MainMill(x0, y0);						 //Мельница 
+			RoofedMill MainRMill(x0, y0);				 //Мельница с крышей
+			WaterMill MainWMill(x0, y0);				 //Водяная мельница 
+			WaterRoofedMill MainWRMill(x0, y0);			 //Водяная мельница с крышей
 
-			Mill* Mills[4];
+			Mill* Mills[NumofMills]{};								 //Массив мельниц
 			Mills[indxMill] = &MainMill;
 			Mills[indxRMill] = &MainRMill;
 			Mills[indxWMill] = &MainWMill;
 			Mills[indxWRMill] = &MainWRMill;
 
-			int pondx = 900, pondy = 600;				 //РЎС‚Р°СЂС‚РѕРІС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РїСЂРµРїСЏС‚СЃС‚РІРёР№
+			int pondx = 900, pondy = 600;				 //Стартовые координаты препятствий
 			int servicex = 100, servicey = 500;
 
-			//РћР±СЉСЏРІР»РµРЅРёРµ РѕР±СЉРµРєС‚РѕРІ РїСЂРµРїСЏС‚СЃС‚РІРёР№
-			Pond Pond(pondx, pondy);
-			ServiceStation Service(servicex, servicey);
+			//Объявление объектов препятствий
+			Pond Pond(pondx, pondy);					//Пруд
+			ServiceStation Service(servicex, servicey);	//Ремонтная станция
 
-			Obstacle* Obstacles[2];
+			Obstacles* Obstacles[NumofObstacles]{};						//Массив препятствий
 			Obstacles[indxPond] = &Pond;
 			Obstacles[indxService] = &Service;
 
+			//Выводим препятствия на экран
 			Obstacles[indxPond]->Show();
 			Obstacles[indxService]->Show();
 			
 			UIFigure(Mills, Obstacles);
 		}
 	}
+
 	return 0;
 
-}	//РєРѕРЅРµС†	main()
+}	//конец	main()
 
-//Р РёСЃСѓРµРј РїСѓСЃС‚РѕР№ РїРµР№Р·Р°Р¶
+//Рисуем пустой пейзаж
 void EmptyField() {
-	ClearAllSky();		//РЅРµР±Рѕ
-	ClearAllCrops();	//РїРѕР»Рµ
+	ClearAllSky();		//небо
+	ClearAllCrops();	//поле
 
 }	//end EmptyField()
 
-//Р РёСЃСѓРµРј РїСѓСЃС‚РѕРµ РЅРµР±Рѕ
+//Рисуем пустое небо
 void ClearAllSky() {
-	//РєРёСЃС‚СЊ Рё РїРµСЂРѕ С†РІРµС‚Р° РЅРµР±Р°
+	//кисть и перо цвета неба
 	HBRUSH brush = CreateSolidBrush(SkyColor);
 	HPEN pen = CreatePen(PS_SOLID, 1, SkyColor);
-	SelectObject(hdc, brush);	//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
-	SelectObject(hdc, pen);		//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
-	//Р·Р°РєСЂР°С€РёРІР°РµРј РЅРµР±Рѕ
+	SelectObject(hdc, brush);	//выбираем заданную кисть
+	SelectObject(hdc, pen);		//выбираем заданную ручку
+	//закрашиваем небо
 	Rectangle(hdc, 0, 0, FieldRight, FieldBottom);
-	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
-	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
-	AllLighttoDarkSky();	//Р РёСЃСѓРµРј СЃРІРµС‚Р»РѕРµ РЅРµР±Рѕ
+	DeleteObject(brush);		//Удаляем больше ненужную кисть
+	DeleteObject(pen);			//и ручку
+	AllLighttoDarkSky();		//Рисуем светлое небо
 
-}	
+}	//end ClearAllSky()
 
-//Р РёСЃСѓРµРј СЃРІРµС‚Р»РѕРµ РЅРµР±Рѕ
+//Рисуем светлое небо
 void AllLighttoDarkSky() {
-	//РєРёСЃС‚СЊ Рё РїРµСЂРѕ С†РІРµС‚Р° СЃРІРµС‚Р»РѕРіРѕ РЅРµР±Р°
+	//кисть и перо цвета светлого неба
 	HBRUSH brush = CreateSolidBrush(LightSkyColor);
 	HPEN pen = CreatePen(PS_SOLID, 1, LightSkyColor);
-	SelectObject(hdc, brush);	//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
-	SelectObject(hdc, pen);		//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
+	SelectObject(hdc, brush);	//выбираем заданную кисть
+	SelectObject(hdc, pen);		//выбираем заданную ручку
 
-	//Р РёСЃСѓРµРј СЃРІРµС‚Р»СѓСЋ С‡Р°СЃС‚СЊ РЅРµР±Р°
+	//Рисуем светлую часть неба
 	Rectangle(hdc, 0, LightSkyLevel, FieldRight, FieldBottom);
-	//Р РёСЃСѓРµРј РїРµСЂРµС…РѕРґ РЅР° РЅРµР±Рµ
+	//Рисуем переход на небе
 	Rectangle(hdc, 0, LightSkyLevel - 3, FieldRight, LightSkyLevel - 15);
 	Rectangle(hdc, 0, LightSkyLevel - 19, FieldRight, LightSkyLevel - 29);
 	Rectangle(hdc, 0, LightSkyLevel - 34, FieldRight, LightSkyLevel - 39);
@@ -125,43 +127,43 @@ void AllLighttoDarkSky() {
 	Rectangle(hdc, 0, LightSkyLevel - 60, FieldRight, LightSkyLevel - 64);
 	Rectangle(hdc, 0, LightSkyLevel - 77, FieldRight, LightSkyLevel - 80);
 
-	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
-	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
+	DeleteObject(brush);	//Удаляем больше ненужную кисть
+	DeleteObject(pen);		//и ручку
 
-}
+}	//end AllLighttoDarkSky()
 
-//Р РёСЃСѓРµРј РїРѕР»Рµ
+//Рисуем поле
 void ClearAllCrops() {
-	SetBkMode(hdc, OPAQUE);			//С„РѕРЅ РєРёСЃС‚Рё РЅРµ РїСЂРѕР·СЂР°С‡РЅС‹Р№
-	SetBkColor(hdc, WheatColor);	//С„РѕРЅ РєРёСЃС‚Рё С†РІРµС‚Р° РїС€РµРЅРёС†С‹
+	SetBkMode(hdc, OPAQUE);			//фон кисти не прозрачный
+	SetBkColor(hdc, WheatColor);	//фон кисти цвета пшеницы
 
-	//РљРёСЃС‚СЊ РІ РїРѕР»РѕСЃРєСѓ С†РІРµС‚Р° С‚РµРјРЅРѕР№ РїС€РµРЅРёС†С‹
+	//Кисть в полоску цвета темной пшеницы
 	HBRUSH brush = CreateHatchBrush(HS_BDIAGONAL, DarkWheatColor);
 
-	//Р СѓС‡РєР° С†РІРµС‚Р° РїС€РµРЅРёС†С‹
+	//Ручка цвета пшеницы
 	HPEN pen = CreatePen(PS_SOLID, 1, WheatColor);
-	SelectObject(hdc, brush);		//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
-	SelectObject(hdc, pen);			//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
+	SelectObject(hdc, brush);		//выбираем заданную кисть
+	SelectObject(hdc, pen);			//выбираем заданную ручку
 
-	//Р—Р°РєСЂР°С€РёРІР°РµРј РїРѕР»Рµ
+	//Закрашиваем поле
 	Rectangle(hdc, 0, WheatLevel, FieldRight, FieldBottom);
 
-	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
-	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
+	DeleteObject(brush);	//Удаляем больше ненужную кисть
+	DeleteObject(pen);		//и ручку
 
-}	
+}	//end ClearAllCrops()
 
-//Р’С‹РІРѕРґ РёРЅС„РѕСЂРјР°С†РёРё Рѕ  СЂР°Р±РѕС‚Рµ СЃ РїСЂРѕРіСЂР°РјРјРѕР№
+//Вывод информации о  работе с программой
 void Information() {
-	cout << "Р’ РїСЂРѕРіСЂР°РјРјРµ РїСЂРёСЃСѓС‚СЃС‚РІСѓСЋС‚ 3 РѕР±СЉРµРєС‚Р°:\n"
-		 << "РњРµР»СЊРЅРёС†Р°, СЃС‚Р°РЅС†РёСЏ СЂРµРјРѕРЅС‚Р° Рё РѕР·РµСЂРѕ.\n"
-		 << "РЎС‚Р°РЅС†РёСЏ РґРѕР±Р°РІР»СЏРµС‚ РёР»Рё СѓРґР°Р»СЏРµС‚ РєСЂС‹С€Сѓ Сѓ РјРµР»СЊРЅРёС†С‹,\n"
-	 	 << "Р° РІ Р·РѕРЅРµ РѕР·РµСЂР° РјРµР»СЊРЅРёС†Р° СЃС‚Р°РЅРѕРІРёС‚СЃСЏ РІРѕРґСЏРЅРѕР№.\n";
-	cout << "\nРњРµР»СЊРЅРёС†Р° РїРµСЂРµС‚Р°СЃРєРёРІР°РµС‚СЃСЏ РїСЂРё РїРѕРјРѕС‰Рё СЃС‚СЂРµР»РѕРє, Esc - РІС‹С…РѕРґ РёР· РїСЂРѕРіСЂР°РјРјС‹.\n";
-	cout << "\nРќР°Р¶РјРёС‚Рµ Enter, С‡С‚РѕР±С‹ РїСЂРѕРґРѕР»Р¶РёС‚СЊ:";
+	cout << "В программе присутствуют 3 объекта:\n"
+		 << "Мельница, станция ремонта и озеро.\n"
+		 << "Станция добавляет или удаляет крышу у мельницы,\n"
+	 	 << "а в зоне озера мельница становится водяной.\n";
+	cout << "\nМельница перетаскивается при помощи стрелок, Esc - выход из программы.\n";
+	cout << "\nНажмите Enter, чтобы продолжить:";
 
 	while(true)
-	if (KEY_DOWN(VK_RETURN))
-		break;
+		if (KEY_DOWN(VK_RETURN))
+			break;
 
-}	
+}	//end Information()
