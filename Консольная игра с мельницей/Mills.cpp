@@ -1,30 +1,30 @@
 /**************************************************************************
-*                                ЛР4 ООП                                  *
+*                                Р›Р 4 РћРћРџ                                  *
 *-------------------------------------------------------------------------*
 *                                                                         *
-* Project Name  : ЛР4. ООП. Мельница. 									  *
+* Project Name  : Р›Р 4. РћРћРџ. РњРµР»СЊРЅРёС†Р°. 					  *
 * Project Type  : Win32 Console application                               *
-* File Name     : Mills.cpp	                                              *
+* File Name     : Mills.cpp	                                          *
 * Language      : Visual C++           MS VS 2022                         *
-* Programmer(s) : К.В.Тимошенко, М3О-211Б-20		                      *
-* Modified By   :														  *
+* Programmer(s) : Рљ.Р’.РўРёРјРѕС€РµРЅРєРѕ, Рњ3Рћ-211Р‘-20		                  *
+* Modified By   :							  *
 * Created       : 28 / 03 / 2022                                          *
 * Last Revision : 01 / 05 / 2022                                          *
-* Comment(s)    : Методы класса Mill и его потомков			              *
-*																		  *
+* Comment(s)    : РњРµС‚РѕРґС‹ РєР»Р°СЃСЃР° Mill Рё РµРіРѕ РїРѕС‚РѕРјРєРѕРІ			  *
+*									  *
 **************************************************************************/
 
-#include "Utilities.h"   // Заголовочный файл с вспомогательными объявлениями
+#include "Utilities.h"   // Р—Р°РіРѕР»РѕРІРѕС‡РЅС‹Р№ С„Р°Р№Р» СЃ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹РјРё РѕР±СЉСЏРІР»РµРЅРёСЏРјРё
 #include "Mills.h"
 
-extern HDC hdc;      // объявим  контекст устройства
+extern HDC hdc;      // РѕР±СЉСЏРІРёРј  РєРѕРЅС‚РµРєСЃС‚ СѓСЃС‚СЂРѕР№СЃС‚РІР°
 
 /*----------------------------------------*/
-/*        МЕТОДЫ КЛАССА Mill              */
+/*        РњР•РўРћР”Р« РљР›РђРЎРЎРђ Mill              */
 /*----------------------------------------*/
 
  //--------------------------------------------------------------
-//конструктор
+//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 Mill::Mill(int InitX, int InitY,
 		   int InitRadius, int InitHeight,
 		   int InitWidth, int InitWheatAmount) : Figure(InitX, InitY) {
@@ -35,303 +35,303 @@ Mill::Mill(int InitX, int InitY,
 }	//end Mill::Mill()
 
 //--------------------------------------------------------------
-//Показать мельницу
+//РџРѕРєР°Р·Р°С‚СЊ РјРµР»СЊРЅРёС†Сѓ
 void Mill::Show() {
-	Visible = true;		//Отметить, как видимую
-	DrawBuilding();		//Показать здание
-	DrawStorage();		//Показать кладовую
-	DrawRotor();		//Показать лопасти
+	Visible = true;		//РћС‚РјРµС‚РёС‚СЊ, РєР°Рє РІРёРґРёРјСѓСЋ
+	DrawBuilding();		//РџРѕРєР°Р·Р°С‚СЊ Р·РґР°РЅРёРµ
+	DrawStorage();		//РџРѕРєР°Р·Р°С‚СЊ РєР»Р°РґРѕРІСѓСЋ
+	DrawRotor();		//РџРѕРєР°Р·Р°С‚СЊ Р»РѕРїР°СЃС‚Рё
 	
 }	//end Mill::Show()
 
 //--------------------------------------------------------------
-//Показать здание мельницы
+//РџРѕРєР°Р·Р°С‚СЊ Р·РґР°РЅРёРµ РјРµР»СЊРЅРёС†С‹
 void Mill::DrawBuilding() {
-	//Зададим ручку и кисть цвета камня
+	//Р—Р°РґР°РґРёРј СЂСѓС‡РєСѓ Рё РєРёСЃС‚СЊ С†РІРµС‚Р° РєР°РјРЅСЏ
 	HBRUSH brush = CreateSolidBrush(MillColor);
 	HPEN pen = CreatePen(PS_SOLID, 1, MillColor);
-	SelectObject(hdc, brush);	//выбираем заданную кисть
-	SelectObject(hdc, pen);		//выбираем заданную ручку
+	SelectObject(hdc, brush);	//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
+	SelectObject(hdc, pen);		//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
 
 	int X = GetX(), Y = GetY();
-	//Рисуем здание мельницы
+	//Р РёСЃСѓРµРј Р·РґР°РЅРёРµ РјРµР»СЊРЅРёС†С‹
 	Rectangle(hdc, X - Width / 2, Y - Height / 4, X + Width / 2, Y + 3 * Height / 4);
 
-	DeleteObject(brush);	//Удаляем больше ненужную кисть
-	DeleteObject(pen);		//и ручку
+	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
+	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
 
 }	//end Mill::DrawBuilding()
 
 //--------------------------------------------------------------
-//Показать лопасти мельницы
+//РџРѕРєР°Р·Р°С‚СЊ Р»РѕРїР°СЃС‚Рё РјРµР»СЊРЅРёС†С‹
 void Mill::DrawRotor() {
 	int X = GetX(), Y = GetY();
-	//зададим толщину оси, лопастей и каркаса лопастей
+	//Р·Р°РґР°РґРёРј С‚РѕР»С‰РёРЅСѓ РѕСЃРё, Р»РѕРїР°СЃС‚РµР№ Рё РєР°СЂРєР°СЃР° Р»РѕРїР°СЃС‚РµР№
 	int HubRad = RotorRadius / 20, BladeWidth = RotorRadius / 5, BladeShaft = RotorRadius / 40;
-	//Зададим ручку и кисть цвета дерева
+	//Р—Р°РґР°РґРёРј СЂСѓС‡РєСѓ Рё РєРёСЃС‚СЊ С†РІРµС‚Р° РґРµСЂРµРІР°
 	HBRUSH brush = CreateSolidBrush(WindshaftColor);
 	HPEN pen = CreatePen(PS_INSIDEFRAME, 1, WindshaftColor);
-	SelectObject(hdc, brush);	//выбираем заданную кисть
-	SelectObject(hdc, pen);		//выбираем заданную ручку
+	SelectObject(hdc, brush);	//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
+	SelectObject(hdc, pen);		//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
 
-	//Рисуем узел вращения
+	//Р РёСЃСѓРµРј СѓР·РµР» РІСЂР°С‰РµРЅРёСЏ
 	Ellipse(hdc, X - HubRad, Y - HubRad, X + HubRad, Y + HubRad);
 
-	//Рисуем крестовину
+	//Р РёСЃСѓРµРј РєСЂРµСЃС‚РѕРІРёРЅСѓ
 	Rectangle(hdc, X, Y, X - RotorRadius , Y - BladeShaft);
 	Rectangle(hdc, X, Y, X + RotorRadius , Y + BladeShaft);
 	Rectangle(hdc, X, Y, X + BladeShaft, Y - RotorRadius );
 	Rectangle(hdc, X, Y, X - BladeShaft, Y + RotorRadius );
-	DeleteObject(brush);	//Удаляем более ненужную кисть
+	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»РµРµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
 
-	//Задаем кисть в белую сетку с прозрачным фоном
+	//Р—Р°РґР°РµРј РєРёСЃС‚СЊ РІ Р±РµР»СѓСЋ СЃРµС‚РєСѓ СЃ РїСЂРѕР·СЂР°С‡РЅС‹Рј С„РѕРЅРѕРј
 	SetBkMode(hdc, TRANSPARENT);
 	brush = CreateHatchBrush(HS_DIAGCROSS, RGB(255, 255, 255));
-	SelectObject(hdc, brush);	//выбираем заданную кисть
+	SelectObject(hdc, brush);	//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
 
-	//Рисуем лопасти
+	//Р РёСЃСѓРµРј Р»РѕРїР°СЃС‚Рё
 	Rectangle(hdc, X - RotorRadius , Y - 2 * BladeShaft, X - RotorRadius / 3, Y + BladeWidth - BladeShaft);
 	Rectangle(hdc, X + RotorRadius / 3, Y - BladeWidth + BladeShaft, X + RotorRadius , Y + 2 * BladeShaft);
 	Rectangle(hdc, X - BladeWidth + BladeShaft, Y - RotorRadius , X + 2 * BladeShaft, Y - RotorRadius / 3);
 	Rectangle(hdc, X - 2 * BladeShaft, Y + RotorRadius , X + BladeWidth - BladeShaft, Y + RotorRadius / 3);
 
-	DeleteObject(brush);	//Удаляем больше ненужную кисть
-	DeleteObject(pen);		//и ручку
+	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
+	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
 
 }	//end Mill::DrawRotor()
 
 //--------------------------------------------------------------
-//Показать склад
+//РџРѕРєР°Р·Р°С‚СЊ СЃРєР»Р°Рґ
 void Mill::DrawStorage() {
 	int X = GetX(), Y = GetY();
-	SetBkMode(hdc, OPAQUE);				//фон кисти не прозрачный
-	SetBkColor(hdc, WheatColor);		//фон кисти цвета крыши
+	SetBkMode(hdc, OPAQUE);				//С„РѕРЅ РєРёСЃС‚Рё РЅРµ РїСЂРѕР·СЂР°С‡РЅС‹Р№
+	SetBkColor(hdc, WheatColor);		//С„РѕРЅ РєРёСЃС‚Рё С†РІРµС‚Р° РєСЂС‹С€Рё
 
-	//Зададим ручку и кисть цвета пшеницы
+	//Р—Р°РґР°РґРёРј СЂСѓС‡РєСѓ Рё РєРёСЃС‚СЊ С†РІРµС‚Р° РїС€РµРЅРёС†С‹
 	HBRUSH brush = CreateHatchBrush(HS_DIAGCROSS, DarkWheatColor);
 	HPEN pen = CreatePen(PS_INSIDEFRAME, 3, DarkWheatColor);
-	SelectObject(hdc, brush);			//выбираем заданную кисть
-	SelectObject(hdc, pen);				//выбираем заданную ручку
+	SelectObject(hdc, brush);			//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
+	SelectObject(hdc, pen);				//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
 
 	Ellipse(hdc, X - Width, Y + 3 * Height / 4, X - Width / 2, Y + (3 * Height / 4) - 2 * RotorRadius / 5);
 
-	DeleteObject(brush);	//Удаляем больше ненужную кисть
-	DeleteObject(pen);		//и ручку
+	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
+	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
 
-	//Зададим ручку и кисть цвета дерева
+	//Р—Р°РґР°РґРёРј СЂСѓС‡РєСѓ Рё РєРёСЃС‚СЊ С†РІРµС‚Р° РґРµСЂРµРІР°
 	brush = CreateSolidBrush(WindshaftColor);
 	pen = CreatePen(PS_SOLID, 1, WindshaftColor);
-	SelectObject(hdc, brush);	//выбираем заданную кисть
-	SelectObject(hdc, pen);		//выбираем заданную ручку
+	SelectObject(hdc, brush);	//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
+	SelectObject(hdc, pen);		//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
 
-	//Нарисуем склад
+	//РќР°СЂРёСЃСѓРµРј СЃРєР»Р°Рґ
 	Rectangle(hdc, X - Width, Y + 3 * Height / 4, X - Width / 2, Y + (3 * Height / 4) - RotorRadius / 5);
-	DeleteObject(brush);	//Удаляем больше ненужную кисть
-	DeleteObject(pen);		//и ручку
+	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
+	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
 
 }	//end Mill::DrawStorage()
 
 //--------------------------------------------------------------
-//Вернуть высоту фигуры
+//Р’РµСЂРЅСѓС‚СЊ РІС‹СЃРѕС‚Сѓ С„РёРіСѓСЂС‹
 int Mill::ReturnMaxHeight()	{	return max(RotorRadius, Height);	}	
 
 //--------------------------------------------------------------
-//Вернуть ширину фигуры
+//Р’РµСЂРЅСѓС‚СЊ С€РёСЂРёРЅСѓ С„РёРіСѓСЂС‹
 int Mill::ReturnMaxWidth()	{	return max(RotorRadius, Width);		}	
 
 /*----------------------------------------*/
-/*        МЕТОДЫ КЛАССА RoofedMill        */
+/*        РњР•РўРћР”Р« РљР›РђРЎРЎРђ RoofedMill        */
 /*----------------------------------------*/
 
 //--------------------------------------------------------------
 RoofedMill::RoofedMill(int InitX, int InitY) : Mill(InitX, InitY) {
-	//формально пустое тело
+	//С„РѕСЂРјР°Р»СЊРЅРѕ РїСѓСЃС‚РѕРµ С‚РµР»Рѕ
 
 }	//end RoofedMill::RoofedMill()
 
 //--------------------------------------------------------------
-//Показать мельницу
+//РџРѕРєР°Р·Р°С‚СЊ РјРµР»СЊРЅРёС†Сѓ
 void RoofedMill::Show() {
-	DrawRoof();						//Нарисовать крышу
-	Mill::Show();					//Нарисовать мельницу методом предка
+	DrawRoof();						//РќР°СЂРёСЃРѕРІР°С‚СЊ РєСЂС‹С€Сѓ
+	Mill::Show();					//РќР°СЂРёСЃРѕРІР°С‚СЊ РјРµР»СЊРЅРёС†Сѓ РјРµС‚РѕРґРѕРј РїСЂРµРґРєР°
 
 }	//end RoofedMill::Show()
 
 //--------------------------------------------------------------
-//Нарисовать крышу
+//РќР°СЂРёСЃРѕРІР°С‚СЊ РєСЂС‹С€Сѓ
 void RoofedMill::DrawRoof()	{
 	int X = GetX(), Y = GetY();
-	SetBkMode(hdc, OPAQUE);			//фон кисти не прозрачный
-	SetBkColor(hdc, RoofColor);		//фон кисти цвета крыши
+	SetBkMode(hdc, OPAQUE);			//С„РѕРЅ РєРёСЃС‚Рё РЅРµ РїСЂРѕР·СЂР°С‡РЅС‹Р№
+	SetBkColor(hdc, RoofColor);		//С„РѕРЅ РєРёСЃС‚Рё С†РІРµС‚Р° РєСЂС‹С€Рё
 
-	//Зададим ручку и кисть цвета крыши
+	//Р—Р°РґР°РґРёРј СЂСѓС‡РєСѓ Рё РєРёСЃС‚СЊ С†РІРµС‚Р° РєСЂС‹С€Рё
 	HBRUSH brush = CreateHatchBrush(HS_HORIZONTAL, RGB(131, 76, 87));
 	HPEN pen = CreatePen(PS_INSIDEFRAME, 1, RoofColor);
-	SelectObject(hdc, brush);		//выбираем заданную кисть
-	SelectObject(hdc, pen);			//выбираем заданную ручку
+	SelectObject(hdc, brush);		//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
+	SelectObject(hdc, pen);			//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
 
-	POINT roof[3];					//Задаем крышу треугольной
-	roof[0].x = X - Width / 2;		//координаты вершин
-	roof[0].y = Y - Height / 4;		//треугольной крыши
+	POINT roof[3];					//Р—Р°РґР°РµРј РєСЂС‹С€Сѓ С‚СЂРµСѓРіРѕР»СЊРЅРѕР№
+	roof[0].x = X - Width / 2;		//РєРѕРѕСЂРґРёРЅР°С‚С‹ РІРµСЂС€РёРЅ
+	roof[0].y = Y - Height / 4;		//С‚СЂРµСѓРіРѕР»СЊРЅРѕР№ РєСЂС‹С€Рё
 	roof[1].x = X + Width / 2;
 	roof[1].y = Y - Height / 4;
 	roof[2].x = X;
 	roof[2].y = Y - Height / 2;
-	Polygon(hdc, roof, 3);	//Рисуем треугольник
+	Polygon(hdc, roof, 3);	//Р РёСЃСѓРµРј С‚СЂРµСѓРіРѕР»СЊРЅРёРє
 
-	DeleteObject(brush);	//Удаляем больше ненужную кисть
-	DeleteObject(pen);		//и ручку
+	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
+	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
 
 }	//end RoofedMill::DrawRoof()
 
 /*----------------------------------------*/
-/*        МЕТОДЫ КЛАССА WaterMill         */
+/*        РњР•РўРћР”Р« РљР›РђРЎРЎРђ WaterMill         */
 /*----------------------------------------*/
 
-//конструктор
+//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 WaterMill::WaterMill(int InitX, int InitY) : Mill(InitX, InitY) {
-	Width = Height;		//Здание квадратное
+	Width = Height;		//Р—РґР°РЅРёРµ РєРІР°РґСЂР°С‚РЅРѕРµ
 
 }	//end WaterMill::WaterMill
 
 //--------------------------------------------------------------
-//Вернуть высоту фигуры
+//Р’РµСЂРЅСѓС‚СЊ РІС‹СЃРѕС‚Сѓ С„РёРіСѓСЂС‹
 int WaterMill::ReturnMaxHeight() {	return max(RotorRadius, 7 * Height / 8);	}	
 
 //--------------------------------------------------------------
-//Вернуть ширину фигуры
+//Р’РµСЂРЅСѓС‚СЊ С€РёСЂРёРЅСѓ С„РёРіСѓСЂС‹
 int WaterMill::ReturnMaxWidth() {	return max(RotorRadius, Width);		}
 
 //--------------------------------------------------------------
-//Показать мельницу
+//РџРѕРєР°Р·Р°С‚СЊ РјРµР»СЊРЅРёС†Сѓ
 void WaterMill::Show() {
-	Visible = true;		//Отметить, как видимую
-	DrawBuilding();		//Показать здание
-	DrawStorage();		//Показать кладовую
-	DrawRotor();		//Показать лопасти
+	Visible = true;		//РћС‚РјРµС‚РёС‚СЊ, РєР°Рє РІРёРґРёРјСѓСЋ
+	DrawBuilding();		//РџРѕРєР°Р·Р°С‚СЊ Р·РґР°РЅРёРµ
+	DrawStorage();		//РџРѕРєР°Р·Р°С‚СЊ РєР»Р°РґРѕРІСѓСЋ
+	DrawRotor();		//РџРѕРєР°Р·Р°С‚СЊ Р»РѕРїР°СЃС‚Рё
 
 }	//end WaterMill::Show()
 
 //--------------------------------------------------------------
-//Показать здание мельницы
+//РџРѕРєР°Р·Р°С‚СЊ Р·РґР°РЅРёРµ РјРµР»СЊРЅРёС†С‹
 void WaterMill::DrawBuilding() {
-	//Зададим ручку и кисть цвета камня
+	//Р—Р°РґР°РґРёРј СЂСѓС‡РєСѓ Рё РєРёСЃС‚СЊ С†РІРµС‚Р° РєР°РјРЅСЏ
 	HBRUSH brush = CreateSolidBrush(MillColor);
 	HPEN pen = CreatePen(PS_SOLID, 1, MillColor);
-	SelectObject(hdc, brush);	//выбираем заданную кисть
-	SelectObject(hdc, pen);		//выбираем заданную ручку
+	SelectObject(hdc, brush);	//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
+	SelectObject(hdc, pen);		//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
 
 	int X = GetX(), Y = GetY();
-	//Рисуем здание мельницы
+	//Р РёСЃСѓРµРј Р·РґР°РЅРёРµ РјРµР»СЊРЅРёС†С‹
 	Rectangle(hdc, X - Width / 2, Y - Height / 2, X + Width / 2, Y + Height / 2);
 
-	DeleteObject(brush);	//Удаляем больше ненужную кисть
-	DeleteObject(pen);		//и ручку
+	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
+	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
 
 }	//end WaterMill::DrawBuilding()
 
 //--------------------------------------------------------------
-//Показать лопасти мельницы
+//РџРѕРєР°Р·Р°С‚СЊ Р»РѕРїР°СЃС‚Рё РјРµР»СЊРЅРёС†С‹
 void WaterMill::DrawRotor() {
 	int X = GetX(), Y = GetY();
-	//зададим толщину оси, лопастей и длину каркаса лопастей
+	//Р·Р°РґР°РґРёРј С‚РѕР»С‰РёРЅСѓ РѕСЃРё, Р»РѕРїР°СЃС‚РµР№ Рё РґР»РёРЅСѓ РєР°СЂРєР°СЃР° Р»РѕРїР°СЃС‚РµР№
 	int HubRad = RotorRadius / 20, BladeWidth = RotorRadius / 10, BladeShaft = Height / 2;
-	//Зададим ручку и кисть цвета дерева
+	//Р—Р°РґР°РґРёРј СЂСѓС‡РєСѓ Рё РєРёСЃС‚СЊ С†РІРµС‚Р° РґРµСЂРµРІР°
 	HPEN pen = CreatePen(PS_INSIDEFRAME, BladeWidth, WindshaftColor);
-	SelectObject(hdc, pen);		//выбираем заданную ручку
+	SelectObject(hdc, pen);		//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
 	HBRUSH brush = (HBRUSH)::GetStockObject(NULL_BRUSH);
-	SelectObject(hdc, brush);	//выбираем заданную кисть
+	SelectObject(hdc, brush);	//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
 
-	//Рисуем лопасти
+	//Р РёСЃСѓРµРј Р»РѕРїР°СЃС‚Рё
 	Ellipse(hdc, X - BladeShaft, Y - BladeShaft, X + BladeShaft, Y + BladeShaft);
-	//Рисуем узел вращения
+	//Р РёСЃСѓРµРј СѓР·РµР» РІСЂР°С‰РµРЅРёСЏ
 	Ellipse(hdc, X - BladeWidth, Y - BladeWidth, X + BladeWidth, Y + BladeWidth);
-	DeleteObject(brush);	//Удаляем больше ненужную кисть
+	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
 
 	brush = CreateSolidBrush(WindshaftColor);
-	SelectObject(hdc, brush);	//выбираем заданную кисть
-	//Рисуем крестовину
+	SelectObject(hdc, brush);	//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
+	//Р РёСЃСѓРµРј РєСЂРµСЃС‚РѕРІРёРЅСѓ
 	Rectangle(hdc, X, Y, X - BladeShaft - HubRad, Y - HubRad);
 	Rectangle(hdc, X, Y, X + BladeShaft + HubRad, Y + HubRad);
 	Rectangle(hdc, X, Y, X + HubRad, Y - BladeShaft - HubRad);
 	Rectangle(hdc, X, Y, X - HubRad, Y + BladeShaft + HubRad);
-	DeleteObject(brush);	//Удаляем больше ненужную кисть
+	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
 
-	DeleteObject(pen);		//и ручку
+	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
 
 }	//end WaterMill::DrawRotor()
 
 //--------------------------------------------------------------
-//Показать склад
+//РџРѕРєР°Р·Р°С‚СЊ СЃРєР»Р°Рґ
 void WaterMill::DrawStorage() {
 	int X = GetX(), Y = GetY();
-	SetBkMode(hdc, OPAQUE);				//фон кисти не прозрачный
-	SetBkColor(hdc, WheatColor);		//фон кисти цвета крыши
+	SetBkMode(hdc, OPAQUE);				//С„РѕРЅ РєРёСЃС‚Рё РЅРµ РїСЂРѕР·СЂР°С‡РЅС‹Р№
+	SetBkColor(hdc, WheatColor);		//С„РѕРЅ РєРёСЃС‚Рё С†РІРµС‚Р° РєСЂС‹С€Рё
 
-	//Зададим ручку и кисть цвета пшеницы
+	//Р—Р°РґР°РґРёРј СЂСѓС‡РєСѓ Рё РєРёСЃС‚СЊ С†РІРµС‚Р° РїС€РµРЅРёС†С‹
 	HBRUSH brush = CreateHatchBrush(HS_DIAGCROSS, DarkWheatColor);
 	HPEN pen = CreatePen(PS_INSIDEFRAME, 3, DarkWheatColor);
-	SelectObject(hdc, brush);			//выбираем заданную кисть
-	SelectObject(hdc, pen);				//выбираем заданную ручку
+	SelectObject(hdc, brush);			//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
+	SelectObject(hdc, pen);				//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
 
 	Ellipse(hdc, X - Width, Y + (Height / 2), X - Width / 2, Y + (Height / 2) - 2 * RotorRadius / 5);
 
-	DeleteObject(brush);	//Удаляем больше ненужную кисть
-	DeleteObject(pen);		//и ручку
+	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
+	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
 
-	//Зададим ручку и кисть цвета дерева
+	//Р—Р°РґР°РґРёРј СЂСѓС‡РєСѓ Рё РєРёСЃС‚СЊ С†РІРµС‚Р° РґРµСЂРµРІР°
 	brush = CreateSolidBrush(WindshaftColor);
 	pen = CreatePen(PS_SOLID, 1, WindshaftColor);
-	SelectObject(hdc, brush);	//выбираем заданную кисть
-	SelectObject(hdc, pen);		//выбираем заданную ручку
+	SelectObject(hdc, brush);	//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
+	SelectObject(hdc, pen);		//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
 
-	//Нарисуем склад
+	//РќР°СЂРёСЃСѓРµРј СЃРєР»Р°Рґ
 	Rectangle(hdc, X - Width, Y + (Height / 2), X - Width / 2, Y + (Height / 2) - RotorRadius / 5);
-	DeleteObject(brush);	//Удаляем больше ненужную кисть
-	DeleteObject(pen);		//и ручку
+	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
+	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
 
 }	//end WaterMill::DrawStorage()
 
 /*----------------------------------------------*/
-/*        МЕТОДЫ КЛАССА WaterRoofedMill         */
+/*        РњР•РўРћР”Р« РљР›РђРЎРЎРђ WaterRoofedMill         */
 /*----------------------------------------------*/
 
 WaterRoofedMill::WaterRoofedMill(int InitX, int InitY) : WaterMill(InitX, InitY) {
-	//формально пустое тело
+	//С„РѕСЂРјР°Р»СЊРЅРѕ РїСѓСЃС‚РѕРµ С‚РµР»Рѕ
 
 }	//end WaterRoofedMill::WaterRoofedMill()
 
 //--------------------------------------------------------------
-//Показать мельницу
+//РџРѕРєР°Р·Р°С‚СЊ РјРµР»СЊРЅРёС†Сѓ
 void WaterRoofedMill::Show() {
-	DrawRoof();				//Рисуем крышу
-	WaterMill::Show();		//Рисуем мельницу из предка
+	DrawRoof();				//Р РёСЃСѓРµРј РєСЂС‹С€Сѓ
+	WaterMill::Show();		//Р РёСЃСѓРµРј РјРµР»СЊРЅРёС†Сѓ РёР· РїСЂРµРґРєР°
 
 }	//end WaterRoofedMill::Show()
 
 //--------------------------------------------------------------
-//Нарисовать крышу
+//РќР°СЂРёСЃРѕРІР°С‚СЊ РєСЂС‹С€Сѓ
 void WaterRoofedMill::DrawRoof()	{
 	int X = GetX(), Y = GetY();
-	SetBkMode(hdc, OPAQUE);			//фон кисти не прозрачный
-	SetBkColor(hdc, RoofColor);		//фон кисти цвета крыши
+	SetBkMode(hdc, OPAQUE);			//С„РѕРЅ РєРёСЃС‚Рё РЅРµ РїСЂРѕР·СЂР°С‡РЅС‹Р№
+	SetBkColor(hdc, RoofColor);		//С„РѕРЅ РєРёСЃС‚Рё С†РІРµС‚Р° РєСЂС‹С€Рё
 
-	//Зададим ручку и кисть цвета крыши
+	//Р—Р°РґР°РґРёРј СЂСѓС‡РєСѓ Рё РєРёСЃС‚СЊ С†РІРµС‚Р° РєСЂС‹С€Рё
 	HBRUSH brush = CreateHatchBrush(HS_HORIZONTAL, RGB(131, 76, 87));
 	HPEN pen = CreatePen(PS_INSIDEFRAME, 3, RoofColor);
-	SelectObject(hdc, brush);		//выбираем заданную кисть
-	SelectObject(hdc, pen);			//выбираем заданную ручку
+	SelectObject(hdc, brush);		//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
+	SelectObject(hdc, pen);			//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
 
-	POINT roof[3];					//Задаем крышу треугольной
-	roof[0].x = X - Width / 2;		//координаты вершин
-	roof[0].y = Y - Height / 2;		//треугольной крыши
+	POINT roof[3];				//Р—Р°РґР°РµРј РєСЂС‹С€Сѓ С‚СЂРµСѓРіРѕР»СЊРЅРѕР№
+	roof[0].x = X - Width / 2;		//РєРѕРѕСЂРґРёРЅР°С‚С‹ РІРµСЂС€РёРЅ
+	roof[0].y = Y - Height / 2;		//С‚СЂРµСѓРіРѕР»СЊРЅРѕР№ РєСЂС‹С€Рё
 	roof[1].x = X + Width / 2;
 	roof[1].y = Y - Height / 2;
 	roof[2].x = X;
 	roof[2].y = Y - 3*Height/4;
-	Polygon(hdc, roof, 3);	//Рисуем треугольник
+	Polygon(hdc, roof, 3);	//Р РёСЃСѓРµРј С‚СЂРµСѓРіРѕР»СЊРЅРёРє
 
-	DeleteObject(brush);	//Удаляем больше ненужную кисть
-	DeleteObject(pen);		//и ручку
+	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
+	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
 
 }	//end WaterRoofedMill::DrawRoof()
