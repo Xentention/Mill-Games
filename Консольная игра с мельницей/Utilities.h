@@ -1,58 +1,58 @@
 /**************************************************************************
-*                                ЛР4 ООП                                  *
+*                                Р›Р 4 РћРћРџ                                  *
 *-------------------------------------------------------------------------*
 *                                                                         *
-* Project Name  : ЛР4. ООП. Мельница. 									  *
+* Project Name  : Р›Р 4. РћРћРџ. РњРµР»СЊРЅРёС†Р°. 					 *
 * Project Type  : Win32 Console application                               *
 * File Name     : Utilities.h	                                          *
 * Language      : Visual C++           MS VS 2022                         *
-* Programmer(s) : К.В.Тимошенко, М3О-211Б-20		                      *
-* Modified By   :														  *
+* Programmer(s) : Рљ.Р’.РўРёРјРѕС€РµРЅРєРѕ, Рњ3Рћ-211Р‘-20		                 *
+* Modified By   :							 *
 * Created       : 28 / 03 / 2022                                          *
 * Last Revision : 01 / 05 / 2022                                          *
-* Comment(s)    : Вспомогательные объявления 						      *
-*																		  *
+* Comment(s)    : Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ РѕР±СЉСЏРІР»РµРЅРёСЏ 				  *
+*									  *
 **************************************************************************/
 
 #pragma once
 
 #include <Windows.h>
 
-//макрос для определения кода нажатой клавиши
+//РјР°РєСЂРѕСЃ РґР»СЏ РѕРїСЂРµРґРµР»РµРЅРёСЏ РєРѕРґР° РЅР°Р¶Р°С‚РѕР№ РєР»Р°РІРёС€Рё
 #define KEY_DOWN(vk_code) ((GetAsyncKeyState(vk_code) & 0x8000) ? 1 : 0)
 
-/*-----------------------  основные директивы  -------------------------*/
-#define FieldBottom 720						//Нижняя граница поля
-#define FieldRight 1280						//Правая граница поля
-#define WheatLevel 3*FieldBottom/5			//Уровень горизонта
-#define LightSkyLevel 3*WheatLevel/4		//Уровень светлого неба
+/*-----------------------  РѕСЃРЅРѕРІРЅС‹Рµ РґРёСЂРµРєС‚РёРІС‹  -------------------------*/
+#define FieldBottom 720						//РќРёР¶РЅСЏСЏ РіСЂР°РЅРёС†Р° РїРѕР»СЏ
+#define FieldRight 1280						//РџСЂР°РІР°СЏ РіСЂР°РЅРёС†Р° РїРѕР»СЏ
+#define WheatLevel 3*FieldBottom/5			//РЈСЂРѕРІРµРЅСЊ РіРѕСЂРёР·РѕРЅС‚Р°
+#define LightSkyLevel 3*WheatLevel/4		//РЈСЂРѕРІРµРЅСЊ СЃРІРµС‚Р»РѕРіРѕ РЅРµР±Р°
 
-#define SkyColor RGB(129, 184, 202)			//Цвет неба
-#define LightSkyColor RGB(170, 229, 240)	//Цвет более светлого неба
-#define WheatColor RGB(255, 178, 78)		//Цвет пшеницы
-#define DarkWheatColor RGB(221, 115, 55)	//Цвет пшеницы темнее
-#define PondColor RGB(90, 188, 216)			//Цвет пруда
+#define SkyColor RGB(129, 184, 202)			//Р¦РІРµС‚ РЅРµР±Р°
+#define LightSkyColor RGB(170, 229, 240)	//Р¦РІРµС‚ Р±РѕР»РµРµ СЃРІРµС‚Р»РѕРіРѕ РЅРµР±Р°
+#define WheatColor RGB(255, 178, 78)		//Р¦РІРµС‚ РїС€РµРЅРёС†С‹
+#define DarkWheatColor RGB(221, 115, 55)	//Р¦РІРµС‚ РїС€РµРЅРёС†С‹ С‚РµРјРЅРµРµ
+#define PondColor RGB(90, 188, 216)			//Р¦РІРµС‚ РїСЂСѓРґР°
 
-#define MillColor RGB(174, 156, 153)		//Цвет каменной части мельницы
-#define WindshaftColor RGB(142,65, 61)		//Цвет деревянной части мельницы
-#define RoofColor RGB(171, 93, 93)			//Цвет крыши мельницы
+#define MillColor RGB(174, 156, 153)		//Р¦РІРµС‚ РєР°РјРµРЅРЅРѕР№ С‡Р°СЃС‚Рё РјРµР»СЊРЅРёС†С‹
+#define WindshaftColor RGB(142,65, 61)		//Р¦РІРµС‚ РґРµСЂРµРІСЏРЅРЅРѕР№ С‡Р°СЃС‚Рё РјРµР»СЊРЅРёС†С‹
+#define RoofColor RGB(171, 93, 93)			//Р¦РІРµС‚ РєСЂС‹С€Рё РјРµР»СЊРЅРёС†С‹
 
-#define PondIsNearby 1						//Код того, что рядом пруд
-#define ServiceIsNearby 2					//Код того, что рядом рем. станция
-#define NothingNearby 0						//Код того, что ничего рядом нет
+#define PondIsNearby 1						//РљРѕРґ С‚РѕРіРѕ, С‡С‚Рѕ СЂСЏРґРѕРј РїСЂСѓРґ
+#define ServiceIsNearby 2					//РљРѕРґ С‚РѕРіРѕ, С‡С‚Рѕ СЂСЏРґРѕРј СЂРµРј. СЃС‚Р°РЅС†РёСЏ
+#define NothingNearby 0						//РљРѕРґ С‚РѕРіРѕ, С‡С‚Рѕ РЅРёС‡РµРіРѕ СЂСЏРґРѕРј РЅРµС‚
 
-#define indxMill 0							//Индекс обычной мельницы
-#define indxRMill 1							//Индекс мельницы с крышей
-#define indxWMill 2							//Индекс водяной мельницы
-#define indxWRMill 3						//Индекс водяной мельницы с крышей
+#define indxMill 0							//РРЅРґРµРєСЃ РѕР±С‹С‡РЅРѕР№ РјРµР»СЊРЅРёС†С‹
+#define indxRMill 1							//РРЅРґРµРєСЃ РјРµР»СЊРЅРёС†С‹ СЃ РєСЂС‹С€РµР№
+#define indxWMill 2							//РРЅРґРµРєСЃ РІРѕРґСЏРЅРѕР№ РјРµР»СЊРЅРёС†С‹
+#define indxWRMill 3						//РРЅРґРµРєСЃ РІРѕРґСЏРЅРѕР№ РјРµР»СЊРЅРёС†С‹ СЃ РєСЂС‹С€РµР№
 
-#define indxPond 0							//Индекс пруда
-#define indxService 1						//Индекс рем. станции
+#define indxPond 0							//РРЅРґРµРєСЃ РїСЂСѓРґР°
+#define indxService 1						//РРЅРґРµРєСЃ СЂРµРј. СЃС‚Р°РЅС†РёРё
 
-const int NumofMills = 4;		//мельница, мельница с крышей, водяная мельница, водяная мельница с крышей
-const int NumofObstacles = 2;	//пруд, ремонтная станция
-const int NumofCollisions = 3;	//вне пруда, внутри пруда, столкнулись с рем. станцией
+const int NumofMills = 4;		//РјРµР»СЊРЅРёС†Р°, РјРµР»СЊРЅРёС†Р° СЃ РєСЂС‹С€РµР№, РІРѕРґСЏРЅР°СЏ РјРµР»СЊРЅРёС†Р°, РІРѕРґСЏРЅР°СЏ РјРµР»СЊРЅРёС†Р° СЃ РєСЂС‹С€РµР№
+const int NumofObstacles = 2;	//РїСЂСѓРґ, СЂРµРјРѕРЅС‚РЅР°СЏ СЃС‚Р°РЅС†РёСЏ
+const int NumofCollisions = 3;	//РІРЅРµ РїСЂСѓРґР°, РІРЅСѓС‚СЂРё РїСЂСѓРґР°, СЃС‚РѕР»РєРЅСѓР»РёСЃСЊ СЃ СЂРµРј. СЃС‚Р°РЅС†РёРµР№
 const int TransitionMatrix[NumofMills][NumofCollisions] = { {indxMill, indxWMill, indxRMill},
-															{indxRMill, indxWRMill, indxMill},
-															{indxMill, indxWMill, indxWRMill},
-															{indxRMill, indxWRMill, indxWMill} };
+							     {indxRMill, indxWRMill, indxMill},
+							     {indxMill, indxWMill, indxWRMill},
+							     {indxRMill, indxWRMill, indxWMill} };
