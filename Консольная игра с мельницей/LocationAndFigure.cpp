@@ -1,35 +1,35 @@
 /**************************************************************************
-*                                ЛР4 ООП                                  *
+*                                Р›Р 4 РћРћРџ                                  *
 *-------------------------------------------------------------------------*
 *                                                                         *
-* Project Name  : ЛР4. ООП. Мельница. 									  *
+* Project Name  : Р›Р 4. РћРћРџ. РњРµР»СЊРЅРёС†Р°. 					  *
 * Project Type  : Win32 Console application                               *
 * File Name     : LocationAndFigure.cpp	                                  *
 * Language      : Visual C++           MS VS 2022                         *
-* Programmer(s) : К.В.Тимошенко, М3О-211Б-20		                      *
-* Modified By   :														  *
+* Programmer(s) : Рљ.Р’.РўРёРјРѕС€РµРЅРєРѕ, Рњ3Рћ-211Р‘-20		                  *
+* Modified By   :							  *
 * Created       : 28 / 03 / 2022                                          *
 * Last Revision : 01 / 05 / 2022                                          *
-* Comment(s)    : Методы классов Location и Point			              *
+* Comment(s)    : РњРµС‚РѕРґС‹ РєР»Р°СЃСЃРѕРІ Location Рё Point			  *
 *																		  *
 **************************************************************************/
 
-#include "Utilities.h"   //Заголовочный файл с вспомогательными объявлениями
+#include "Utilities.h"  	 //Р—Р°РіРѕР»РѕРІРѕС‡РЅС‹Р№ С„Р°Р№Р» СЃ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹РјРё РѕР±СЉСЏРІР»РµРЅРёСЏРјРё
 #include "LocationAndFigure.h"
 
-extern HDC hdc;     //объявим  контекст устройства
+extern HDC hdc;  		   //РѕР±СЉСЏРІРёРј  РєРѕРЅС‚РµРєСЃС‚ СѓСЃС‚СЂРѕР№СЃС‚РІР°
 
-//прототипы вспомогательных для Hide() функций
+//РїСЂРѕС‚РѕС‚РёРїС‹ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹С… РґР»СЏ Hide() С„СѓРЅРєС†РёР№
 void HideSky(int X, int Y, int Width, int Height);
 void HideLighttoDarkSky(int X, int Y, int Width, int Height);
 void HideCrops(int X, int Y, int Width, int Height);
 
 /*----------------------------------------*/
-/*        МЕТОДЫ КЛАССА Location          */
+/*        РњР•РўРћР”Р« РљР›РђРЎРЎРђ Location          */
 /*----------------------------------------*/
 
 //------------------------------------------------
-//конструктор
+//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 Location::Location(int InitX, int InitY) {
 	X = InitX;
 	Y = InitY;
@@ -37,92 +37,92 @@ Location::Location(int InitX, int InitY) {
 };	//end Location::Location()
 
 //------------------------------------------------
- //получить X координату точки
+ //РїРѕР»СѓС‡РёС‚СЊ X РєРѕРѕСЂРґРёРЅР°С‚Сѓ С‚РѕС‡РєРё
 int Location::GetX() {	return X;	};	
 
 //------------------------------------------------
- //получить Y координату точки
+ //РїРѕР»СѓС‡РёС‚СЊ Y РєРѕРѕСЂРґРёРЅР°С‚Сѓ С‚РѕС‡РєРё
 int Location::GetY() {	return Y;	};
 
 //------------------------------------------------
-//установить X координату точки
+//СѓСЃС‚Р°РЅРѕРІРёС‚СЊ X РєРѕРѕСЂРґРёРЅР°С‚Сѓ С‚РѕС‡РєРё
 void Location::SetX(int NewX) { X = NewX; };
 
 //------------------------------------------------
-//установить Y координату точки
+//СѓСЃС‚Р°РЅРѕРІРёС‚СЊ Y РєРѕРѕСЂРґРёРЅР°С‚Сѓ С‚РѕС‡РєРё
 void Location::SetY(int NewY) { Y = NewY; };
 
 /*----------------------------------------*/
-/*        МЕТОДЫ КЛАССА Figure             */
+/*        РњР•РўРћР”Р« РљР›РђРЎРЎРђ Figure             */
 /*----------------------------------------*/
 
  //--------------------------------------------------------------
-//конструктор
+//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 Figure::Figure(int InitX, int InitY) : Location(InitX, InitY) {
 	Visible = false;
 }	//end Figure::Figure()
 
  //--------------------------------------------------------------
-//Скрыть фигуру
+//РЎРєСЂС‹С‚СЊ С„РёРіСѓСЂСѓ
 void Figure::Hide() {
 	if (!Visible) return;
 
-	Visible = false;					//Больше не видна
-	int Height = ReturnMaxHeight();		//Узнаем высоту фигуры
-	int Width = ReturnMaxWidth();		//Узнаем ширину фигуры
+	Visible = false;			//Р‘РѕР»СЊС€Рµ РЅРµ РІРёРґРЅР°
+	int Height = ReturnMaxHeight();		//РЈР·РЅР°РµРј РІС‹СЃРѕС‚Сѓ С„РёРіСѓСЂС‹
+	int Width = ReturnMaxWidth();		//РЈР·РЅР°РµРј С€РёСЂРёРЅСѓ С„РёРіСѓСЂС‹
 
-	if (WheatLevel > GetY() - Height)				//Если фигура выше горизонта
-		HideSky(GetX(), GetY(), Width, Height);		//Закрашиваем небо
+	if (WheatLevel > GetY() - Height)			//Р•СЃР»Рё С„РёРіСѓСЂР° РІС‹С€Рµ РіРѕСЂРёР·РѕРЅС‚Р°
+		HideSky(GetX(), GetY(), Width, Height);		//Р—Р°РєСЂР°С€РёРІР°РµРј РЅРµР±Рѕ
 
-	if (WheatLevel <= GetY() + Height)				//Если фигура ниже горизонта
-		HideCrops(GetX(), GetY(), Width, Height);	//Закрашиваем поле
+	if (WheatLevel <= GetY() + Height)			//Р•СЃР»Рё С„РёРіСѓСЂР° РЅРёР¶Рµ РіРѕСЂРёР·РѕРЅС‚Р°
+		HideCrops(GetX(), GetY(), Width, Height);	//Р—Р°РєСЂР°С€РёРІР°РµРј РїРѕР»Рµ
 
 }	//end Figure::Hide()
 
 //--------------------------------------------------------------
-//переместить фигуру
+//РїРµСЂРµРјРµСЃС‚РёС‚СЊ С„РёРіСѓСЂСѓ
 void Figure::MoveTo(int NewX, int NewY)	{
-	Hide();		//сделать фигуру невидимой
-	SetX(NewX);	//поменять ее координаты
+	Hide();		//СЃРґРµР»Р°С‚СЊ С„РёРіСѓСЂСѓ РЅРµРІРёРґРёРјРѕР№
+	SetX(NewX);	//РїРѕРјРµРЅСЏС‚СЊ РµРµ РєРѕРѕСЂРґРёРЅР°С‚С‹
 	SetY(NewY);
-	Show();		//показать фигуру на новом месте
+	Show();		//РїРѕРєР°Р·Р°С‚СЊ С„РёРіСѓСЂСѓ РЅР° РЅРѕРІРѕРј РјРµСЃС‚Рµ
 
 }	//end Figure::MoveTo()
 
 /*------------------------------------*/
-/* Вспомогательные функции для Hide() */
+/* Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ С„СѓРЅРєС†РёРё РґР»СЏ Hide() */
 /*------------------------------------*/
 
 //--------------------------------------------------------------
-//Закрасить небо
+//Р—Р°РєСЂР°СЃРёС‚СЊ РЅРµР±Рѕ
 void HideSky(int X, int Y, int Width, int Height) {
-	HBRUSH brush = CreateSolidBrush(SkyColor);		//ручка цвета неба
-	HPEN pen = CreatePen(PS_SOLID, 1, SkyColor);	//кисть цвета неба
-	SelectObject(hdc, brush);	//выбираем заданную кисть
-	SelectObject(hdc, pen);		//выбираем заданную ручку
+	HBRUSH brush = CreateSolidBrush(SkyColor);		//СЂСѓС‡РєР° С†РІРµС‚Р° РЅРµР±Р°
+	HPEN pen = CreatePen(PS_SOLID, 1, SkyColor);		//РєРёСЃС‚СЊ С†РІРµС‚Р° РЅРµР±Р°
+	SelectObject(hdc, brush);	//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
+	SelectObject(hdc, pen);		//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
 
-	//Закрашиваем фигуру
+	//Р—Р°РєСЂР°С€РёРІР°РµРј С„РёРіСѓСЂСѓ
 	Rectangle(hdc, X - Width, Y - Height, X + Width, Y + Height);
-	DeleteObject(brush);	//Удаляем больше ненужную кисть
-	DeleteObject(pen);		//и ручку
+	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
+	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
 
-	HideLighttoDarkSky(X, Y, Width, Height);	//Закрашиваем светлую часть неба
+	HideLighttoDarkSky(X, Y, Width, Height);	//Р—Р°РєСЂР°С€РёРІР°РµРј СЃРІРµС‚Р»СѓСЋ С‡Р°СЃС‚СЊ РЅРµР±Р°
 
 }	//end HideSky()
 
 //--------------------------------------------------------------
-//Закрасить светлое небо
+//Р—Р°РєСЂР°СЃРёС‚СЊ СЃРІРµС‚Р»РѕРµ РЅРµР±Рѕ
 void HideLighttoDarkSky(int X, int Y, int Width, int Height) {
-	HBRUSH brush = CreateSolidBrush(LightSkyColor);		//кисть цвета светлого неба
-	HPEN pen = CreatePen(PS_SOLID, 1, LightSkyColor);	//ручка цвета светлого неба
-	SelectObject(hdc, brush);	//выбираем заданную кисть
-	SelectObject(hdc, pen);		//выбираем заданную ручку
+	HBRUSH brush = CreateSolidBrush(LightSkyColor);		//РєРёСЃС‚СЊ С†РІРµС‚Р° СЃРІРµС‚Р»РѕРіРѕ РЅРµР±Р°
+	HPEN pen = CreatePen(PS_SOLID, 1, LightSkyColor);	//СЂСѓС‡РєР° С†РІРµС‚Р° СЃРІРµС‚Р»РѕРіРѕ РЅРµР±Р°
+	SelectObject(hdc, brush);	//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
+	SelectObject(hdc, pen);		//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
 
-	//Закрашиваем светлое небо
+	//Р—Р°РєСЂР°С€РёРІР°РµРј СЃРІРµС‚Р»РѕРµ РЅРµР±Рѕ
 	if (LightSkyLevel <= Y + Height)
 		Rectangle(hdc, X - Width, LightSkyLevel, X + Width, Y + Height);
 
-	//Обновляем градиент на небе
+	//РћР±РЅРѕРІР»СЏРµРј РіСЂР°РґРёРµРЅС‚ РЅР° РЅРµР±Рµ
 	if (LightSkyLevel > Y - Height) {
 		Rectangle(hdc, X - Width, LightSkyLevel - 3, X + Width, LightSkyLevel - 15);
 		Rectangle(hdc, X - Width, LightSkyLevel - 19, X + Width, LightSkyLevel - 29);
@@ -132,28 +132,28 @@ void HideLighttoDarkSky(int X, int Y, int Width, int Height) {
 		Rectangle(hdc, X - Width, LightSkyLevel - 77, X + Width, LightSkyLevel - 80);
 	}
 
-	DeleteObject(brush);	//Удаляем больше ненужную кисть
-	DeleteObject(pen);		//и ручку
+	DeleteObject(brush);		//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
+	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
 
 }	//end HideLighttoDarkSky()
 
 //--------------------------------------------------------------
-//Закрасить поле
+//Р—Р°РєСЂР°СЃРёС‚СЊ РїРѕР»Рµ
 void HideCrops(int X, int Y, int Width, int Height) {
-	SetBkMode(hdc, OPAQUE);			//фон кисти не прозрачный
-	SetBkColor(hdc, WheatColor);	//фон кисти цвета пшеницы
-	//Кисть в полоску цвета темной пшеницы
+	SetBkMode(hdc, OPAQUE);			//С„РѕРЅ РєРёСЃС‚Рё РЅРµ РїСЂРѕР·СЂР°С‡РЅС‹Р№
+	SetBkColor(hdc, WheatColor);	//С„РѕРЅ РєРёСЃС‚Рё С†РІРµС‚Р° РїС€РµРЅРёС†С‹
+	//РљРёСЃС‚СЊ РІ РїРѕР»РѕСЃРєСѓ С†РІРµС‚Р° С‚РµРјРЅРѕР№ РїС€РµРЅРёС†С‹
 	HBRUSH brush = CreateHatchBrush(HS_BDIAGONAL, DarkWheatColor);
-	//Ручка цвета пшеницы
+	//Р СѓС‡РєР° С†РІРµС‚Р° РїС€РµРЅРёС†С‹
 	HPEN pen = CreatePen(PS_SOLID, 1, WheatColor);
-	SelectObject(hdc, brush);	//выбираем заданную кисть
-	SelectObject(hdc, pen);		//выбираем заданную ручку
+	SelectObject(hdc, brush);	//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ РєРёСЃС‚СЊ
+	SelectObject(hdc, pen);		//РІС‹Р±РёСЂР°РµРј Р·Р°РґР°РЅРЅСѓСЋ СЂСѓС‡РєСѓ
 
 	int UpperLevel = max(Y - Height, WheatLevel);
-	//Закрашиваем поле
+	//Р—Р°РєСЂР°С€РёРІР°РµРј РїРѕР»Рµ
 	Rectangle(hdc, X - Width, UpperLevel, X + Width, Y + Height);
 
-	DeleteObject(brush);	//Удаляем больше ненужную кисть
-	DeleteObject(pen);		//и ручку
+	DeleteObject(brush);	//РЈРґР°Р»СЏРµРј Р±РѕР»СЊС€Рµ РЅРµРЅСѓР¶РЅСѓСЋ РєРёСЃС‚СЊ
+	DeleteObject(pen);		//Рё СЂСѓС‡РєСѓ
 
 }	//end HideCrops()
